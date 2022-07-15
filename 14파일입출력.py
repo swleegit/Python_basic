@@ -42,6 +42,40 @@ for line in lines: #원소(단수) 리스트 (복수)
     print(line, end="")
 score_file.close()
 
+#pickle
+#프로그램(python)상에서 사용하는 데이터를 파일형태로 저장
+#그 파일을 pickle을 이용해서 안에 있는 데이터를 가져와서 python에서 코드로 사용가능함
+
+import pickle
+profile_file = open("profile.pickle", "wb") #확장자 pickle, 피클은 txt파일이 아님! = 바이너리파일, 피클 사용시 엔코딩 필요없음
+profile = {"이름" : "박명수", "나이" : 30, "취미" : ["축구", "골프", "코딩"]}
+print(profile)
+pickle.dump(profile,profile_file) #profile에 있는 정보(코드)를 file에 저장함
+profile_file.close()
+
+#위의 코드를 수행하면 profile.pickle 파일이 생긴다
+
+#이제 해당 파일을 읽어서 python 소스코드에 바로 사용하는 방법을 알아보자
+
+profile_file = open("profile.pickle", "rb") 
+profile = pickle.load(profile_file) #profile_file의 정보를 profile에 가져온다.
+print(profile)
+profile_file.close()
+
+#with : open과 close를 동시에
+
+with open("profile.pickle", "rb") as profile_files:
+    print(pickle.load(profile_file))
+
+with open("study.txt", "r",encoding= 'utf8') as study_files:
+    study_files.write("파이썬을 열심히 공부하고 있어요.")
+
+with open("study.txt", "r", encoding='utf8') as study_files:
+    print(study_files.read())
+
+
+
+
 
 
 
