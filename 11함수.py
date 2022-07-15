@@ -1,5 +1,51 @@
 #함수선언: 반복되는 코드는 함수로 만들어 편리하게 사용하자
 
+#매개변수가 없는 경우 
+def open_account():
+    print("새로운 계좌가 형성되었습니다")
+
+open_account() 
+#def 함수이름(매개변수):
+    #코드 작성
+#함수이름(매개변수)  # 함수호출, 리턴값이 있다면 받을 변수가 있어야 활용가능함
+
+#매개변수와 리턴값이 있는 경우
+
+def deposit(balance, money):
+    print("입금이 완료되었습니다. 잔액은{0}원입니다.".format(balance + money))
+    return balance + money
+
+balance = 1000
+balance = deposit(balance, 50000)
+print(balance)
+
+#출금 
+#출금액< 잔액 : 출금 가능함 , 남은 금액 잔액 - 출금액
+
+def withdraw(balance, money):
+    if balance >= money:
+        print("출금이 완료되었습니다. 잔액은 {0}원입니다."\
+            .format(balance - money))
+        return balance - money
+    else:
+        print("출금이 불가합니다. 잔액은 {0}원입니다".format(balance))
+        return balance
+balance = 50000
+balance = withdraw(balance, 20000)
+
+#return 값 여러개 
+
+def withdraw_night(balance, money):
+    commission = 100
+    if balance >= money:
+        print("출금이 완료되었습니다. 잔액은{0}원입니다".format(balance-money-commission))
+        return commission, balance-money-commission
+
+balance = 1000000
+balance, commission = withdraw_night(balance, 1000)
+print("수수료는 {0}원이며, 잔액은 {1}원입니다.".format(commission, balance))
+
+
 def profile(name, age, main_lang):
     print("이름 : {0}\t나이: {1}\t주 사용 언어: {2}"\
         .format(name, age, main_lang))#긴 코드는 역슬래쉬로 끊어 단순화 표현 가능하다.
@@ -42,7 +88,7 @@ profile_1("김태호", 30, "c", "c++", "", "")
 
 def profile_vari(name, age, *language):
     print("이름: {0}\t나이: {1}\t".format(name, age), end=" ")
-    for lang in language:
+    for lang in language: #사용시 *을 붙이지 않는다.
         print(lang, end = " ") #print 구문은 자동 줄바꿈이 일어나며, 연이어 출력하고 싶다면 , end= " "을 반드시 고려
     print() #줄바꿈을 위함 
 
