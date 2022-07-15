@@ -72,6 +72,8 @@ person = "Unknown"
 while person != customer: #person이 토르가 될 때까지 무한반복이니까 토르와 person이 달라야 물어보는걸 계속함
     print("{0}, 커피가 준비되었습니다".format(customer))
     person = input("이름이 어떻게 되세요?")
+#반복문(for, while), 조건문(if, elif, else)에서 변수는 전역변수 그대로 사용가능함
+#함수에서 전역변수를 사용하려면 global 해야함.
 
 #continue와 break
 absent = [2,5]
