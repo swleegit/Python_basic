@@ -87,3 +87,66 @@ name : wratih
 hp : 80
 damage = 5
 '''
+
+#마인드 컨트롤 : 상대방 유닛을 내것으로 만드는 것(빼앗음)
+wraith2 = Unit("레이스", 80 , 5)
+#Unit에 __init__함수가 호출되고 매개변수에 값이할당되고 print구문이 실행되고 wraith1라는 객체가 형성됨
+#그 wraith 객체에는 이름, 체력, 데미지 정보가 있음 
+wraith2.clocking = True #외부에서 객체에 정보를 추가할 수 있음 기존에 다른객체에 대해서 적용 안됨  
+
+'''
+--wraith2--
+name : wratih
+hp : 80
+damage = 5
+clocking --> 추가됨 , 이 정보는 wraith1에는 없다.
+'''
+
+if wraith2.clocking == True:
+    print("{0}는 현재 클로킹 상태입니다".format(wraith2.name))
+
+#메소드
+
+#공격 유닛 
+class AttackUnit:
+    def __init__(self, name, hp, damage): #self는 class에서 메서드(함수)의 매개변수 첫번째에 반드시 등장해야한다.
+        self.name = name #self.name 자기자신이라는 뜻, 즉 객체 자기자신 marine, wraith1, wraith2 이런것들이 self라고 지칭됨
+                         #name은 매개변수를 의미함
+        self.hp = hp
+        self.damage = damage
+    
+    def attack(self, location): #class내에서 메서드(함수)의 매개변수 첫번째는 반드시 self가 있다.
+        print("{0} : {1} 방향으로 적군을 공격합니다. [공격력{2}"\
+            .format(self.name, location, self.damage))
+            #self.name은 객체 자체의 name (멤버변수)를 사용하겠다는 의미이고
+            #그냥 location으로 쓴것은 함수의 매개변수에 할당된 값을 쓰겠다는 의미
+            #위에 init메서드에서 내에서 정의한 멤버변수를 하나의 클래스 내에서 다른 메서드에서 사용가능함 
+    def damaged(self,damage):
+        print("{o} : {1} 데미지를 입었습니다".format(self.name, damage))
+        self.hp -= damage #멤버변수에 다른 값을 할당 
+        print("{0} : 현재 체력은 {1}입니다".format(self.name, self.hp))
+        if self.hp <= 0: 
+            print("{0} : 파괴되었습니다.".format(self.name))
+
+#파이어뱃 : 공격 유닛, 화염방사기
+firebat1 = AttackUnit("파이어뱃", 50 ,16)
+#주의. AttackUnit에 init함수를 제외하고 다른 함수들도 있지만 객체를 형성할 때는 init매개변수에 맞게 하는것
+#      AttackUnit 클래스를 하면 init함수에 있는 구문만 실행되는거지 다른함수들은 실행되지 않는다.
+#      따로 외부에서 사용해야한다.
+'''
+-- firebat1 --
+name
+hp
+damage
+attack(location)
+damaged(damage)
+
+'''
+firebat1.attack("5시")
+#이렇게 하면 firebat1 객체에 있는 정보중 attack(loation)함수가 실행됨
+
+#공격 2번 받는다고 가정
+
+firebat1.damaged(25)
+firebat1.damaged(25)
+
