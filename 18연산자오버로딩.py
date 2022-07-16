@@ -49,7 +49,7 @@ class FlyableAttackUnit(AttackUnit, Flyable):
         print("[공중 유닛 이동]")#부모클래스<Flyable>의 함수fly을 사용해야함.
         self.fly(self.name, location)
         #init 그 아래 init에서 실행된 모든 변수와 함수(self.)는 사용할 수 있다.
-
+        #함수는 반드시 self. 이다! 변수는 self.name과 name은 다르지만
 
 #자식클래스가 꼭 부모클래스 init의 매개변수를 전부다 가질 필요 없다.
 #flow를 보면 클래스 <FlyableAttackUnit>을 사용할 때 매개변수 name, hp, damage, flying_speed에 값을 할당해야함
@@ -67,11 +67,35 @@ battlecruiser = FlyableAttackUnit("배틀크루져", 500, 25, 3)
 
 vulture.move("11시")
 battlecruiser.fly(battlecruiser.name, "9시")
-battlecruiser.move1("9시")
+battlecruiser.move("9시")
+#move함수를 재정의하지 않았다면 
+#<FlyableAttackUnit> <AttackUnit> <Unit> 의 move 함수를 쓰지만 
+#자식클래스 <FlyableAttackUnit>에 새롭게 move함수를 정의함에 따라 
+#battlecruiser.move는 새롭게 정의한 move를 따르게 된다
+#반면 vulture은 AttackUnit에 속한 것으로 여기서 move는 <Unit>의 move를 따른다.
+
 
 #지상이면 move 공중이면 fly로 구분해서 생각하는게 귀찮음 
 
 #연산자 오버로딩 
 
 #부모클래스에서 정의한 method말고 자식 클래스에서 정의한 method를 쓰고 싶을 때
-#method를 새롭게 정의해서 사용할 수 있다. 
+#method를 새롭게 정의해서 사용할 수 있다.
+
+#pass 아무것도 하지않고 다음코드로 넘어간다
+
+class BuildingUnit(Unit):
+    def __init__(self, name, hp, location):
+        pass
+        #우선 아무것도 하지 않고넘어간다. 오류발생 없음. 형식만 임시로 잡아놓고 싶은 경우 
+
+
+supply_depot = BuildingUnit("서플라이 디폿", 500, "7시")
+
+#super
+
+class BuildingUnit(Unit):
+    def __init__(self,name,hp,location):
+        #Unit.__init__(self, name, hp, 0)
+        super().__init__(name,hp,0) #위에 코드와 동일함, 부모클래스의 이름과 self를 뺀다.
+        self.location = location
