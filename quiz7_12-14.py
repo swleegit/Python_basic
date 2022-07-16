@@ -19,3 +19,11 @@ for week in range(1,51): # 1 ~ 50
     with open("{0}주차.txt".format(week), "w", encoding= 'utf8') as file_report:
         print(f"-{week} 주차 주간보고-", file = file_report)
         file_report.write("부서 :\n이름 :\n업무 요약:")
+
+#해답 
+
+for i in range(1,51):
+    with open(str(i) + ".txt", "w",encoding="utf8") as file_report:
+        file_report.write("-{0} 주차 주간보고 -".format(i))
+        file_report.write("부서 :\n이름 :\n업무 요약:")
+        #문자열.format : 문자열 함수임! print구문 안에서만 사용해야하는거 아니다.
