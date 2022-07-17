@@ -21,3 +21,20 @@ if os.path.exists(folder): #현재 디렉토리에 해당 폴더가 있으면 Tr
 else:
     os.makedirs(folder) #해당 이름을 가진 폴더를 현재 디렉토리에 생성 
     print(folder , "폴더를 생성하였습니다.")
+
+print(os.listdir()) #현재 디렉토리에 있는 파일과 폴더 리스트 
+
+#time : 시간관련함수
+import time
+print(time.localtime())
+print(time.strftime("%Y-%m-%d %H: %M: %S"))
+
+#datetime
+import datetime
+print("오늘 날짜는 ", datetime.date.today()) #오늘 년 월 일 
+
+#timedelta : 두 날짜 사이의 간격
+today = datetime.date.today() #오늘 날짜 저장 
+td = datetime.timedelta(days = 100) # 100일 저장 
+print("우리가 만난지 100일은", today + td) #오늘부터 100일 후
+
