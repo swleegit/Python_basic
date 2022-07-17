@@ -40,8 +40,8 @@ attack(tank2_name, "1시", tank2_damage)
 #서로 연관이 있는 변수와 함수의 집합 
 
 class Unit: #class 클래스이름(대문자로 시작, 캐멀케이스)
-    def __init__(self, name, hp, damage): #__init__ 객체가 만들어질 때 자동으로 호출되는 부분 
-        self.name = name #init의 첫번째 변수.변수이름 = 할당값, 멤버변수에 값을 할당하는 과정
+    def __init__(self, name, hp, damage): #__init__ 클래스 만들어질때 무조건 호출되는 부분, 반드시 있어야함.
+        self.name = name #객체(self = marine1, marine2...).변수이름 = 할당값 -->멤버변수 정의하는 과정
                          #여기서는 클래스가 받은 매개변수 name의 값을 할당
         self.hp = hp
         self.damage = damage
@@ -54,7 +54,7 @@ tank = Unit("탱크", 150, 35)
 
 #__init__
 #파이썬에서 사용되는 생성자
-#마린이나 탱크같은 객체가 만들어 질때 자동으로 호출되는 부분
+#클래스를 사용해서 마린이나 탱크같은 객체가 만들때 무조건 호출됨 
 #객체 : 마린과 탱크와 같이 클래스로부터 만들어지는 것들
 #이때 마린과 탱크는 Unit 클래스의 인스턴스라고 한다. 
 #객체가 생성될 때는 init함수의 매개변수(self제외)수 만큼 값을 지정해야한다.
